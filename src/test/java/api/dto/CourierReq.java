@@ -1,17 +1,15 @@
 package api.dto;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import lombok.Data;
+import lombok.AllArgsConstructor;
 
+@Data
+@AllArgsConstructor
 public class CourierReq {
     private String login;
     private String password;
     private String name;
-
-    public CourierReq(String login, String password, String name) {
-        this.login = login;
-        this.password = password;
-        this.name = name;
-    }
 
     public CourierReq() {
     }
@@ -23,11 +21,4 @@ public class CourierReq {
                 RandomStringUtils.randomAlphabetic(10)
         );
     }
-
-    public String getLogin() { return login; }
-    public void setLogin(String login) { this.login = login; }
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
 }

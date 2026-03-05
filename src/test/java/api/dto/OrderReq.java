@@ -1,6 +1,8 @@
 package api.dto;
 
 import java.util.List;
+import lombok.Data;
+import lombok.AllArgsConstructor;
 
 public class OrderReq {
     private String firstName;
@@ -27,5 +29,6 @@ public class OrderReq {
         this.color = color;
     }
 
-    public OrderReq() {}
+    public OrderReq() {
+    }
 }

@@ -1,33 +1,24 @@
 package tests.order;
 
-import api.utils.TestBase;
-import io.qameta.allure.Step;
+import api.dto.OrderApi;
+import io.qameta.allure.Description;
 import io.restassured.response.ValidatableResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import static org.apache.http.HttpStatus.*;
 
-import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.notNullValue;
 
-@DisplayName("Список заказов")
-public class OrderListTest extends TestBase {
-    private static final String LIST_PATH = "/api/v1/orders";
 
-    @Step("Получить список")
-    private ValidatableResponse getList() {
-        return given().log().all()
-                .spec(getReqSpec())
-                .when()
-                .get(LIST_PATH)
-                .then().log().all();
-    }
-
+public class OrderListTest  {
+    private final OrderApi orderApi = new OrderApi();
     @Test
     @DisplayName("Получить все заказы")
+    @Description("Проверка ответа на возвращение списка заказов")
     public void getAllOrders() {
-        ValidatableResponse resp = getList();
-        resp.assertThat()
-                .statusCode(200)
+        ValidatableResponse resp = orderApi.getList();
+        resp.assertThat().log().all()
+                .statusCode(SC_OK) //SC_OK = 200
                 .body("orders", notNullValue());
     }
 }
